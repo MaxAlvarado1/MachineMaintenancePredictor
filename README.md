@@ -75,10 +75,11 @@ After hyperparameter optimization, we achieved a model with a **98.6% accuracy**
 ## 📉 TensorBoard Training Visualization
 To better understand the training process and monitor model performance in real time, we used TensorBoard. Below are key screenshots that highlight training and validation progress:
 
-### 🟦 Loss Over Epochs
 *Blue = Training Set*
 
 *Orange = Validation Set*
+
+### 🟦 Loss Over Epochs
 #### Base Wide And Deep Model
 <p align="center">
   <img src="Images/Loss1.png" width="500"/>
