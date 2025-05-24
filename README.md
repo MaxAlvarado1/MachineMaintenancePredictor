@@ -72,14 +72,48 @@ After hyperparameter optimization, we achieved a model with a **98.6% accuracy**
 
 ---
 
-## 📂 Saving the Final Model
-The trained and optimized model is saved using **joblib** for future inference.
+## 📉 TensorBoard Training Visualization
+To better understand the training process and monitor model performance in real time, we used TensorBoard. Below are key screenshots that highlight training and validation progress:
+
+### 🟦 Loss Over Epochs
+#### Base Wide And Deep Model
+<p align="center">
+  <img src="Images/Loss1.png" width="500"/>
+</p>
+
+#### Improved Wide And Deep Model
+<p align="center">
+  <img src="Images/Loss2.png" width="500"/>
+</p>
+
+#### Final Wide And Deep Model
+<p align="center">
+  <img src="Images/Loss3.png" width="500"/>
+</p>
+
+### 🟩 Accuracy Over Epochs
+#### Base Wide And Deep Model
+<p align="center">
+  <img src="Images/Acc1.png" width="500"/>
+</p>
+
+#### Improved Wide And Deep Model
+<p align="center">
+  <img src="Images/Acc2.png" width="500"/>
+</p>
+
+#### Final Wide And Deep Model
+<p align="center">
+  <img src="Images/Acc3.png" width="500"/>
+</p>
+
+*Smoothing parameter in TensorBoard was set to 0.65 to clearly show the trend without losing important learning dynamics.*
 
 ---
 
 ## 🚀 Key Takeaways
 - **Feature Importance**: `Rotational Speed` and `Torque` are the most predictive features for machine failure.
-- **Model Performance**: The final model achieved a high accuracy of 98.6%.
+- **Model Performance**: The final model achieved a high accuracy of 98.7%.
 - **Model Efficiency**: The Wide and Deep architecture improved model performance by capturing both high-level feature interactions and direct feature contributions.
 
 ---
@@ -91,19 +125,26 @@ This project provides a robust pipeline for predicting machine failures, offerin
 
 ## 🛠️ Libraries Used
 ```python
-import warnings
-import os
+import os 
 import kaggle
 import pandas as pd 
 import numpy as np
+%matplotlib inline
 import matplotlib.pyplot as plt
 import seaborn as sns
+import statistics
+from zlib import crc32
+from sklearn.impute import SimpleImputer 
 from sklearn.preprocessing import OneHotEncoder
-from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
 from sklearn.compose import ColumnTransformer
-from sklearn.preprocessing import FunctionTransformer
+import time
 import tensorflow as tf
-from keras.models import Model
+from tensorflow import keras
 from scikeras.wrappers import KerasRegressor
-from sklearn.metrics import accuracy_score
+from keras import regularizers
+from keras import activations
+from keras.layers import BatchNormalization, LeakyReLU
+from keras.callbacks import ReduceLROnPlateau
+from sklearn.model_selection import RandomizedSearchCV
