@@ -77,6 +77,7 @@ To better understand the training process and monitor model performance in real 
 
 ### 🟦 Loss Over Epochs
 *Blue = Training Set*
+
 *Orange = Validation Set*
 #### Base Wide And Deep Model
 <p align="center">
